@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 text-gray-800">
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-5 flex items-center justify-between"
+      >
+        <!-- LOGO -->
+        <h1 class="text-2xl 2xl:text-3xl font-bold text-indigo-600">
+          NewsPortal
+        </h1>
+
+        <!-- CATEGORY MENU -->
+        <div
+          id="category-div-containner"
+          class="hidden md:flex items-center gap-4 2xl:gap-8 text-sm 2xl:text-base font-medium"
+        >
+          <!-- categories will load here -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- SEARCH BAR -->
+    <section class="bg-white border-b">
+      <div class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-6">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input
+            id="search-box"
+            type="text"
+            placeholder="Search latest news..."
+            class="w-full px-5 py-4 2xl:py-5 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          />
+          <button
+            onclick="handleSearch()"
+            class="bg-indigo-600 text-white px-8 py-4 2xl:py-5 rounded-2xl hover:bg-indigo-700 transition font-medium"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section
+      class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-10 2xl:py-16"
+    >
+      <h2 class="text-3xl 2xl:text-4xl font-bold mb-10">Latest News</h2>
+
+      <div
+        id="news-containner"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 2xl:gap-10"
+      >
+        <!-- news cards -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t">
+      <div
+        class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-6 text-center text-gray-500"
+      >
+        © 2025 NewsPortal. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
