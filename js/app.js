@@ -22,6 +22,7 @@ const loadCategory = async () => {
 // show news on the page
 
 const loadNews = async (categoryId) => {
+  document.getElementById("loading-spinner").classList.remove("hidden");
   const response = await fetch(
     `https://openapi.programming-hero.com/api/news/category/${categoryId}`
   );
@@ -31,6 +32,7 @@ const loadNews = async (categoryId) => {
   const newsContainner = document.getElementById("news-containner");
   newsContainner.innerHTML = "";
   allData.forEach((item) => {
+    document.getElementById("loading-spinner").classList.add("hidden");
     const div = document.createElement("div");
     div.classList =
       "bg-white rounded-3xl shadow hover:shadow-2xl transition overflow-hidden";
@@ -89,10 +91,10 @@ const loadNews = async (categoryId) => {
 const handleSearch = () => {
   const searchValu = document.getElementById("search-box").value;
   if (!isNaN(searchValu) && searchValu !== "") {
-  loadNews(searchValu)
-} else {
-  alert("please enter a category id which is number");
-}
+    loadNews(searchValu);
+  } else {
+    alert("please enter a category id which is number");
+  }
 };
 
 // funtion call center
