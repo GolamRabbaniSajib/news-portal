@@ -23,67 +23,62 @@ const loadCategory = async () => {
 
 const loadNews = async (categoryId) => {
   document.getElementById("loading-spinner").classList.remove("hidden");
+
   const response = await fetch(
     `https://openapi.programming-hero.com/api/news/category/${categoryId}`
   );
-
   const data = await response.json();
   const allData = data.data;
+
   const newsContainner = document.getElementById("news-containner");
   newsContainner.innerHTML = "";
-  allData.forEach((item) => {
-    document.getElementById("loading-spinner").classList.add("hidden");
+
+  document.getElementById("loading-spinner").classList.add("hidden");
+
+  allData.forEach((item, index) => {
     const div = document.createElement("div");
-    div.classList =
+    div.className =
       "bg-white rounded-3xl shadow hover:shadow-2xl transition overflow-hidden";
+
     div.innerHTML = `
-          <img
-            src="${item.image_url}"
-            class="w-full h-56 2xl:h-64 object-cover"
-          />
+      <img src="${item.image_url}" class="w-full h-56 2xl:h-64 object-cover" />
 
-          <div class="p-6 2xl:p-8 space-y-4">
-            <h3 class="text-xl 2xl:text-2xl font-semibold">
-              ${item.title}
-            </h3>
+      <div class="p-6 2xl:p-8 space-y-4">
+        <h3 class="text-xl 2xl:text-2xl font-semibold">${item.title}</h3>
 
-            <div class="flex items-center gap-2 text-sm 2xl:text-base">
-              <span class="text-yellow-400">${item.rating.badge}</span>
-              <span class="text-gray-500">(${item.rating.number})</span>
-            </div>
+        <div class="flex items-center gap-2 text-sm">
+          <span class="text-yellow-400">${item.rating.badge}</span>
+          <span class="text-gray-500">(${item.rating.number})</span>
+        </div>
 
-            <p class="text-gray-600 text-sm 2xl:text-base">
-              ${item.details.slice(0, 200)}...
+        <p class="text-gray-600 text-sm">
+          ${item.details.slice(0, 150)}...
+        </p>
+
+        <div class="flex items-center gap-4">
+          <img src="${item.author.img}" class="w-11 h-11 rounded-full" />
+          <div>
+            <p class="font-medium">${item.author.name || "Unknown"}</p>
+            <p class="text-gray-500 text-sm">
+              ${item.author.published_date || "N/A"}
             </p>
+          </div>
+        </div>
 
-            <div class="flex items-center gap-4 mt-4">
-              <img
-                src="${item.author.img}"
-                class="w-11 h-11 2xl:w-14 2xl:h-14 rounded-full object-cover"
-              />
-              <div class="text-sm 2xl:text-base">
-                <p class="font-medium">${item.author.name}</p>
-                <p class="text-gray-500">Published: ${
-                  item.author.published_date
-                }</p>
-              </div>
-            </div>
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2 text-gray-500 text-sm">
+            👁️ ${item.total_view || 0}
+          </div>
 
-            <div class="flex items-center justify-between mt-5">
-              <div
-                class="flex items-center gap-2 text-gray-500 text-sm 2xl:text-base"
-              >
-                <span>👁️</span>
-                <span>${item.total_view}</span>
-              </div>
-
-              <button onClick="check('${item}')"
-                class="bg-indigo-600 text-white px-5 py-2.5 2xl:px-7 2xl:py-3 rounded-xl hover:bg-indigo-700 transition text-sm 2xl:text-base"
-              >
-                Details
-              </button>
-            </div>
-          </div>`;
+          <button
+            onclick='showDetails(${JSON.stringify(item)})'
+            class="bg-indigo-600 text-white px-5 py-2 rounded-xl hover:bg-indigo-700"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    `;
     newsContainner.appendChild(div);
   });
 };
@@ -97,10 +92,9 @@ const handleSearch = () => {
   }
 };
 
-
-const check = (item)=>{
-  console.log(item.title)
-}
+const check = (item) => {
+  console.log(item.title);
+};
 // funtion call center
 loadCategory();
 loadNews("08");
