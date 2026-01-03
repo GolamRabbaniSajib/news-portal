@@ -70,17 +70,56 @@
         © 2025 NewsPortal. All rights reserved.
       </div>
     </footer>
-<!-- LOADING SPINNER -->
-<div
-  id="loading-spinner"
-  class="fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center z-50"
->
-  <div
-    class="w-16 h-16 2xl:w-24 2xl:h-24 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"
-  ></div>
-</div>
+    <!-- LOADING SPINNER -->
+    <div
+      id="loading-spinner"
+      class="fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center z-50"
+    >
+      <div
+        class="w-16 h-16 2xl:w-24 2xl:h-24 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"
+      ></div>
+    </div>
 
+    <!-- DETAILS MODAL -->
+    <div
+      id="news-modal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-white w-[90%] max-w-2xl 2xl:max-w-4xl rounded-2xl p-6 2xl:p-10 relative"
+      >
+        <!-- Close Button -->
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-2xl"
+        >
+          ✕
+        </button>
 
+        <img
+          id="modal-image"
+          class="w-full h-64 2xl:h-96 object-cover rounded-xl mb-6"
+        />
+
+        <h2 id="modal-title" class="text-2xl 2xl:text-4xl font-bold mb-4"></h2>
+
+        <p
+          id="modal-details"
+          class="text-gray-600 text-sm 2xl:text-lg mb-6"
+        ></p>
+
+        <div class="flex items-center gap-4">
+          <img
+            id="modal-author-img"
+            class="w-12 h-12 2xl:w-16 2xl:h-16 rounded-full object-cover"
+          />
+          <div>
+            <p id="modal-author-name" class="font-medium"></p>
+            <p id="modal-date" class="text-sm text-gray-500"></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="./js/app.js"></script>
   </body>

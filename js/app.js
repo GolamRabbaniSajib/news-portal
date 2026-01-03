@@ -77,7 +77,7 @@ const loadNews = async (categoryId) => {
                 <span>${item.total_view}</span>
               </div>
 
-              <button
+              <button onClick="check('${item}')"
                 class="bg-indigo-600 text-white px-5 py-2.5 2xl:px-7 2xl:py-3 rounded-xl hover:bg-indigo-700 transition text-sm 2xl:text-base"
               >
                 Details
@@ -97,6 +97,10 @@ const handleSearch = () => {
   }
 };
 
+
+const check = (item)=>{
+  console.log(item.title)
+}
 // funtion call center
 loadCategory();
 loadNews("08");
