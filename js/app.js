@@ -83,6 +83,25 @@ const loadNews = async (categoryId) => {
   });
 };
 
+// modal funtion
+
+const showDetails = (item) => {
+  document.getElementById("modal-image").src = item.image_url;
+  document.getElementById("modal-title").innerText = item.title;
+  document.getElementById("modal-details").innerText = item.details;
+  document.getElementById("modal-author-img").src = item.author.img || "";
+  document.getElementById("modal-author-name").innerText =
+    item.author.name || "Unknown";
+  document.getElementById("modal-date").innerText =
+    item.author.published_date || "N/A";
+
+  document.getElementById("news-modal").classList.remove("hidden");
+};
+
+const closeModal = () => {
+  document.getElementById("news-modal").classList.add("hidden");
+};
+
 const handleSearch = () => {
   const searchValu = document.getElementById("search-box").value;
   if (!isNaN(searchValu) && searchValu !== "") {
