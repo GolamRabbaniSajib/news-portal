@@ -8,49 +8,40 @@
   </head>
 
   <body class="bg-gray-100 text-gray-800">
-
     <!-- NAVBAR -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
       <div
-        class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-5 flex justify-between items-center"
+        class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 py-5 flex justify-between items-center"
       >
-        <h1 class="text-2xl 2xl:text-3xl font-bold text-indigo-600">
-          NewsPortal
-        </h1>
-
+        <h1 class="text-2xl font-bold text-indigo-600">NewsPortal</h1>
         <div
           id="category-div-containner"
-          class="hidden md:flex gap-3 2xl:gap-6 text-sm 2xl:text-base font-medium"
+          class="hidden md:flex gap-4 text-sm font-medium"
         ></div>
       </div>
     </nav>
 
     <!-- SEARCH -->
     <section class="bg-white border-b">
-      <div class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-6">
-        <div class="flex flex-col sm:flex-row gap-4">
-          <input
-            id="search-box"
-            type="text"
-            placeholder="Enter category ID (e.g. 01)"
-            class="w-full px-5 py-4 border rounded-2xl focus:ring-2 focus:ring-indigo-400 outline-none"
-          />
-          <button
-            onclick="handleSearch()"
-            class="bg-indigo-600 text-white px-8 py-4 rounded-2xl hover:bg-indigo-700 transition"
-          >
-            Search
-          </button>
-        </div>
+      <div class="max-w-7xl mx-auto px-4 py-6 flex gap-4">
+        <input
+          id="search-box"
+          type="text"
+          placeholder="Enter category id (01, 02...)"
+          class="w-full px-5 py-4 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
+        <button
+          onclick="handleSearch()"
+          class="bg-indigo-600 text-white px-8 py-4 rounded-xl hover:bg-indigo-700"
+        >
+          Search
+        </button>
       </div>
     </section>
 
     <!-- NEWS -->
-    <section
-      class="max-w-7xl 2xl:max-w-[1800px] mx-auto px-4 2xl:px-10 py-10"
-    >
-      <h2 class="text-3xl 2xl:text-4xl font-bold mb-8">Latest News</h2>
-
+    <section class="max-w-7xl mx-auto px-4 py-10">
+      <h2 class="text-3xl font-bold mb-8">Latest News</h2>
       <div
         id="news-containner"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8"
@@ -60,14 +51,12 @@
     <!-- MODAL -->
     <div
       id="news-modal"
-      class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50"
+      class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50"
     >
-      <div
-        class="bg-white w-[90%] max-w-2xl rounded-2xl p-6 relative"
-      >
+      <div class="bg-white w-[90%] max-w-2xl rounded-2xl p-6 relative">
         <button
           onclick="closeModal()"
-          class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl"
+          class="absolute top-4 right-4 text-xl text-gray-500 hover:text-red-500"
         >
           ✕
         </button>
@@ -76,16 +65,11 @@
           id="modal-image"
           class="w-full h-60 object-cover rounded-xl mb-4"
         />
-
         <h2 id="modal-title" class="text-2xl font-bold mb-3"></h2>
-
         <p id="modal-details" class="text-gray-600 mb-4"></p>
 
         <div class="flex items-center gap-4">
-          <img
-            id="modal-author-img"
-            class="w-12 h-12 rounded-full"
-          />
+          <img id="modal-author-img" class="w-12 h-12 rounded-full" />
           <div>
             <p id="modal-author-name" class="font-medium"></p>
             <p id="modal-date" class="text-gray-500 text-sm"></p>
@@ -97,7 +81,7 @@
     <!-- LOADING -->
     <div
       id="loading-spinner"
-      class="fixed inset-0 bg-white/70 flex items-center justify-center z-50 hidden"
+      class="fixed inset-0 bg-white/70 hidden flex items-center justify-center z-50"
     >
       <div
         class="w-16 h-16 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"
