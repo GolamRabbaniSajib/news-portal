@@ -48,31 +48,50 @@
       ></div>
     </section>
 
-    <!-- MODAL -->
+    <!-- RESPONSIVE MODAL -->
     <div
       id="news-modal"
-      class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50"
+      class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center"
     >
-      <div class="bg-white w-[90%] max-w-2xl rounded-2xl p-6 relative">
+      <!-- MODAL BODY -->
+      <div
+        class="bg-white w-full sm:w-[90%] md:w-[80%] lg:w-[70%] 2xl:w-[60%] max-h-[95vh] rounded-t-3xl sm:rounded-3xl overflow-y-auto relative"
+      >
+        <!-- CLOSE BUTTON -->
         <button
           onclick="closeModal()"
-          class="absolute top-4 right-4 text-xl text-gray-500 hover:text-red-500"
+          class="sticky top-4 float-right mr-4 text-2xl text-gray-500 hover:text-red-500"
         >
           ✕
         </button>
 
-        <img
-          id="modal-image"
-          class="w-full h-60 object-cover rounded-xl mb-4"
-        />
-        <h2 id="modal-title" class="text-2xl font-bold mb-3"></h2>
-        <p id="modal-details" class="text-gray-600 mb-4"></p>
+        <!-- CONTENT -->
+        <div class="p-5 sm:p-8 2xl:p-10">
+          <img
+            id="modal-image"
+            class="w-full h-48 sm:h-64 lg:h-72 2xl:h-96 object-cover rounded-2xl mb-6"
+          />
 
-        <div class="flex items-center gap-4">
-          <img id="modal-author-img" class="w-12 h-12 rounded-full" />
-          <div>
-            <p id="modal-author-name" class="font-medium"></p>
-            <p id="modal-date" class="text-gray-500 text-sm"></p>
+          <h2
+            id="modal-title"
+            class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4"
+          ></h2>
+
+          <p
+            id="modal-details"
+            class="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-6"
+          ></p>
+
+          <!-- AUTHOR -->
+          <div class="flex items-center gap-4 mt-6">
+            <img
+              id="modal-author-img"
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+            />
+            <div>
+              <p id="modal-author-name" class="font-medium"></p>
+              <p id="modal-date" class="text-gray-500 text-sm"></p>
+            </div>
           </div>
         </div>
       </div>
