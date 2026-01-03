@@ -1,7 +1,7 @@
 const spinner = document.getElementById("loading-spinner");
 const newsContainner = document.getElementById("news-containner");
 
-/* LOAD CATEGORIES */
+/* LOAD CATEGORY */
 const loadCategory = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/news/categories"
@@ -11,10 +11,10 @@ const loadCategory = async () => {
 
   data.data.news_category.forEach((cat) => {
     const btn = document.createElement("button");
+    btn.innerText = cat.category_name;
     btn.className =
       "px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition";
-    btn.innerText = cat.category_name;
-    btn.onclick = () => loadNews(cat.category_id);
+    btn.addEventListener("click", () => loadNews(cat.category_id));
     container.appendChild(btn);
   });
 };
@@ -32,7 +32,7 @@ const loadNews = async (categoryId) => {
 
     if (!data.data.length) {
       newsContainner.innerHTML =
-        "<p class='text-center col-span-full text-gray-500'>No news found</p>";
+        "<p class='col-span-full text-center text-gray-500'>No news found</p>";
       return;
     }
 
@@ -43,30 +43,24 @@ const loadNews = async (categoryId) => {
 
       card.innerHTML = `
         <img src="${item.image_url}" class="w-full h-56 object-cover" />
-
         <div class="p-6 space-y-4">
           <h3 class="text-xl font-semibold">${item.title}</h3>
-
-          <div class="text-sm text-gray-500">
-            ⭐ ${item.rating?.number || 0}
-          </div>
-
-          <p class="text-gray-600 text-sm">
-            ${item.details.slice(0, 150)}...
-          </p>
-
+          <p class="text-gray-600 text-sm">${item.details.slice(0, 150)}...</p>
           <div class="flex justify-between items-center">
-            <span class="text-gray-500 text-sm">👁️ ${item.total_view || 0}</span>
-
-            <button
-              onclick='showDetails(${JSON.stringify(item)})'
-              class="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700"
-            >
-              Details
-            </button>
+            <span class="text-gray-500 text-sm">👁️ ${
+              item.total_view || 0
+            }</span>
           </div>
         </div>
       `;
+
+      const btn = document.createElement("button");
+      btn.innerText = "Details";
+      btn.className =
+        "bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 mx-6 mb-6";
+      btn.addEventListener("click", () => showDetails(item));
+
+      card.appendChild(btn);
       newsContainner.appendChild(card);
     });
   } catch (err) {
@@ -81,8 +75,7 @@ const showDetails = (item) => {
   document.getElementById("modal-image").src = item.image_url;
   document.getElementById("modal-title").innerText = item.title;
   document.getElementById("modal-details").innerText = item.details;
-  document.getElementById("modal-author-img").src =
-    item.author?.img || "";
+  document.getElementById("modal-author-img").src = item.author?.img || "";
   document.getElementById("modal-author-name").innerText =
     item.author?.name || "Unknown";
   document.getElementById("modal-date").innerText =
@@ -101,7 +94,7 @@ const handleSearch = () => {
   if (/^\d+$/.test(value)) {
     loadNews(value);
   } else {
-    alert("Please enter a numeric category ID");
+    alert("Please enter a numeric category id");
   }
 };
 
